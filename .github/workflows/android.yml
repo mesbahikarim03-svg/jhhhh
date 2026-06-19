@@ -2,7 +2,7 @@ name: Build Android APK
 
 on:
   push:
-    branches: [ main ] # أو master حسب اسم الفرع عندك
+    branches: [ main ] # تأكد أن هذا هو اسم فرعك الرئيسي (main أو master)
 
 jobs:
   build:
@@ -17,6 +17,14 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: gradle
+
+    # هذا السطر السحري الجديد يقوم بتوليد ملف gradlew تلقائياً في حال عدم وجوده
+    - name: Validate or Generate Gradle Wrapper
+      run: |
+        if [ ! -f "gradlew" ]; then
+          echo "Gradlew not found, generating wrapper..."
+          gradle wrapper
+        fi
 
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
