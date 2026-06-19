@@ -2,7 +2,7 @@ name: Build Android APK
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main ] # تأكد أن هذا هو اسم فرعك (main أو master)
 
 jobs:
   build:
@@ -18,18 +18,17 @@ jobs:
         distribution: 'temurin'
         cache: gradle
 
-    - name: Validate or Generate Gradle Wrapper
-      run: |
-        if [ ! -f "gradlew" ]; then
-          echo "Gradlew not found, generating wrapper..."
-          gradle wrapper
-        fi
+    # إجبار السيرفر على استخدام إصدار 8.7 المستقر والـ Wrapper الخاص به
+    - name: Setup Gradle
+      uses: gradle/actions/setup-gradle@v3
+      with:
+        gradle-version: '8.7'
 
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
 
     - name: Build with Gradle
-      run: ./gradlew assembleDebug --stacktrace --info
+      run: ./gradlew assembleDebug
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
