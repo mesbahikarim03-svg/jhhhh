@@ -24,6 +24,10 @@ android {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
     }
+    // تفعيل الخصائص الأساسية لمنع أخطاء التجميع
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 dependencies {
@@ -31,8 +35,8 @@ dependencies {
     implementation 'com.google.android.material:material:1.11.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     
-    // مكتبة قوية للتحميل السريع ودعم استكمال التحميل
+    // مكتبة التحميل السريع
     implementation 'com.mindorks.android:prdownloader:1.0.2'
-    // مكتبة OkHttp للتعرف على الروابط وجلب الجودات/الأحجام
+    // مكتبة OkHttp للتعامل مع الروابط
     implementation 'com.squareup.okhttp3:okhttp:4.12.0'
 }
