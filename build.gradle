@@ -1,13 +1,10 @@
-
-// ملف إعدادات المشروع العام
 buildscript {
     repositories {
         google()
         mavenCentral()
     }
     dependencies {
-        // الاعتماد على إصدار مستقر ومتوافق مع Java 17 و Gradle حديث
-        classpath 'com.android.tools.build:gradle:8.2.2'
+        classpath 'com.android.tools.build:gradle:8.3.2'
     }
 }
 
